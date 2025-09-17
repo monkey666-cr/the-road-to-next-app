@@ -17,7 +17,7 @@ export default function Tickets() {
         <p className="text-sm">Your tickets place to start</p>
       </div>
 
-      <div className="flex flex-1 flex-col items-center">
+      <div className="flex flex-1 flex-col items-center animate-fade-in-from-top">
         {initializeData.map((ticket) => (
           <div
             key={ticket.id}
