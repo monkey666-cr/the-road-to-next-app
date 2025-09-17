@@ -1,5 +1,6 @@
 import initializeData from "@/data";
 import { ticketPath } from "@/path";
+import clsx from "clsx";
 import Link from "next/link";
 
 const TicketStatus = {
@@ -31,7 +32,11 @@ export default function Tickets() {
             </div>
 
             <div className="flex flex-1 justify-between">
-              <p className="text-sm truncate w-full max-w-[300px]">
+              <p
+                className={clsx("text-sm truncate w-full max-w-[300px]", {
+                  "line-through text-gray-400": ticket.status === "CLOSED",
+                })}
+              >
                 {ticket.description}
               </p>
 
