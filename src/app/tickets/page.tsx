@@ -10,17 +10,38 @@ const TicketStatus = {
 
 export default function Tickets() {
   return (
-    <>
-      <h1>Tickets Page</h1>
+    <div className="flex flex-1 flex-col gap-y-8">
+      <div>
+        <h2 className="text-3xl font-bold tracking-tight">Tickets Page</h2>
+        <p className="text-sm">Your tickets place to start</p>
+      </div>
 
-      {initializeData.map((ticket) => (
-        <div key={ticket.id} className="border p-4 my-2">
-          <h2 className="text-xl font-bold">{ticket.title}</h2>
-          <p>{ticket.description}</p>
-          <span>{TicketStatus[ticket.status]}</span>
-          <Link href={ticketPath(ticket.id)}>Go to Ticket: {ticket.id}</Link>
-        </div>
-      ))}
-    </>
+      <div className="flex flex-1 flex-col items-center">
+        {initializeData.map((ticket) => (
+          <div
+            key={ticket.id}
+            className="
+              w-full max-w-[420px]
+              border rounded p-4 my-2
+              "
+          >
+            <div className="flex flex-1 justify-between mb-2">
+              <h3 className="text-lg font-semibold truncate">{ticket.title}</h3>
+              <span>{TicketStatus[ticket.status]}</span>
+            </div>
+
+            <div className="flex flex-1 justify-between">
+              <p className="text-sm truncate w-full max-w-[300px]">
+                {ticket.description}
+              </p>
+
+              <div className="underline text-sm">
+                <Link href={ticketPath(ticket.id)}>View</Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
