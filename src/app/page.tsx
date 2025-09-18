@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -9,9 +10,11 @@ export default function Home() {
       </div>
 
       <div className="flex flex-1 flex-col items-center">
-        <Link href="/tickets" className="text-sm underline">
-          Go to Tickets
-        </Link>
+        <Button variant="outline">
+          <Link href="/tickets" className="text-sm underline">
+            Go to Tickets
+          </Link>
+        </Button>
       </div>
     </div>
   );

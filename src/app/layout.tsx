@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { homePath, ticketsPath } from "@/path";
+import { homePath, loginPath, ticketsPath } from "@/path";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,11 +37,30 @@ export default function RootLayout({
           border-b bg-baackground/95 backdrop-blur
           w-full flex justify-between py-2.5 px-5"
         >
-          <div>
-            <Link href={homePath}>Home</Link>
+          <div className="flex gap-2">
+            <div>
+              <Button asChild variant="outline">
+                <Link href={homePath}>Home</Link>
+              </Button>
+            </div>
+            <div>
+              <Link
+                href={ticketsPath}
+                className={buttonVariants({ variant: "outline" })}
+              >
+                Tickets
+              </Link>
+            </div>
           </div>
-          <div>
-            <Link href={ticketsPath}>Tickets</Link>
+          <div className="flex gap-2">
+            <div>
+              <Link
+                href={loginPath}
+                className={buttonVariants({ variant: "outline" })}
+              >
+                Login
+              </Link>
+            </div>
           </div>
         </nav>
         <main
