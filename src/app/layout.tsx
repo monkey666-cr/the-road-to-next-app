@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import { homePath, loginPath, ticketsPath } from "@/path";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { LucideKanban } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +41,10 @@ export default function RootLayout({
           <div className="flex gap-2">
             <div>
               <Button asChild variant="outline">
-                <Link href={homePath}>Home</Link>
+                <Link href={homePath}>
+                  <LucideKanban />
+                  <h1 className="text-lg font-semibold">TicketBounty</h1>
+                </Link>
               </Button>
             </div>
             <div>

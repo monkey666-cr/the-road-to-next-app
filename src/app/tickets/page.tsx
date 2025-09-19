@@ -9,28 +9,14 @@ import {
 } from "@/components/ui/card";
 import clsx from "clsx";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import { LucideFileText, LucidePencil, LucideCircleCheck } from "lucide-react";
 
-const CheckIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="size-6"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
-    />
-  </svg>
-);
 
 const TicketStatus = {
-  OPEN: <CheckIcon />,
-  IN_PROGRESS: "P",
-  CLOSED: "C",
+  OPEN: <LucideFileText />,
+  IN_PROGRESS: <LucidePencil />,
+  CLOSED: <LucideCircleCheck />,
 };
 
 export default function Tickets() {
@@ -41,12 +27,16 @@ export default function Tickets() {
         <p className="text-sm">Your tickets place to start</p>
       </div>
 
+      <Separator />
+
       <div className="flex flex-1 flex-col items-center animate-fade-in-from-top">
         {initializeData.map((ticket) => (
           <Card key={ticket.id} className="w-full max-w-[420px] mb-4">
             <CardHeader>
               <CardTitle className="flex flex-row justify-between items-center">
-                <span className="line-clamp-1 w-full max-w-[250]">{ticket.title}</span>
+                <span className="line-clamp-1 w-full max-w-[250]">
+                  {ticket.title}
+                </span>
                 <span>{TicketStatus[ticket.status]}</span>
               </CardTitle>
             </CardHeader>

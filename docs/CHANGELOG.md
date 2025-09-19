@@ -15,3 +15,4 @@
 - feat: add fade in from top animate
 - feat: setup ui.shadcn.com
 - feat: add card component, add login page.
+- feat: add icon component using Lucide
