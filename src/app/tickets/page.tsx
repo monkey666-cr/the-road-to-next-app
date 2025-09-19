@@ -11,7 +11,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { LucideFileText, LucidePencil, LucideCircleCheck } from "lucide-react";
-
+import { Heading } from "@/components/heading";
 
 const TicketStatus = {
   OPEN: <LucideFileText />,
@@ -22,12 +22,7 @@ const TicketStatus = {
 export default function Tickets() {
   return (
     <div className="flex flex-1 flex-col gap-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Tickets Page</h2>
-        <p className="text-sm">Your tickets place to start</p>
-      </div>
-
-      <Separator />
+      <Heading title="Tickets Page" />
 
       <div className="flex flex-1 flex-col items-center animate-fade-in-from-top">
         {initializeData.map((ticket) => (
