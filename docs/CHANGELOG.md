@@ -22,7 +22,6 @@
 - feat: Heading
 - feat: Header
 - feat: Placeholder
-- feat: Intro
 - feat: Extract
 - feat: Modify
 - feat: Reuse
