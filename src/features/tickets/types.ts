@@ -7,6 +7,7 @@ export type Ticket = {
   description: string;
 };
 
-export type TicketProps = {
+export type TicketItemProps = {
   ticket: Ticket;
+  isDetial?: boolean;
 };

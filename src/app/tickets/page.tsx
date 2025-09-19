@@ -4,7 +4,7 @@ import TicketItem from "@/features/tickets/components/ticket-item";
 
 export default function Tickets() {
   return (
-    <div className="flex flex-1 flex-col gap-y-8">
+    <div className="flex flex-1 flex-col">
       <Heading title="Tickets Page" />
 
       <div className="flex flex-1 flex-col items-center animate-fade-in-from-top">

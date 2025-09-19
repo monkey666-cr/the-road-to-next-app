@@ -13,7 +13,7 @@ const Heading = ({ title, description }: HeadingProps) => {
         {description && <p className="text-sm-">{description}</p>}
       </div>
 
-      <Separator />
+      <Separator className="my-8"/>
     </>
   );
 };

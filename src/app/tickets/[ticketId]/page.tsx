@@ -2,6 +2,7 @@ import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
 import initializeData from "@/data";
+import TicketItem from "@/features/tickets/components/ticket-item";
 import { ticketsPath } from "@/path";
 import Link from "next/link";
 
@@ -34,8 +35,9 @@ const TicketPage = async (props: TicketPageProps) => {
     <>
       <Heading title="Ticket Details" />
 
-      <h1>{ticket?.title}</h1>
-      <span>{ticket?.description}</span>
+      <div className="flex flex-col flex-1 items-center animate-fade-in-from-top">
+        <TicketItem ticket={ticket} isDetial />
+      </div>
     </>
   );
 };

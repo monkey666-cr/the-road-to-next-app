@@ -4,7 +4,7 @@ import { Heading } from "@/components/heading";
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col gap-y-8">
+    <div className="flex flex-1 flex-col">
       <Heading title="Home" description="Hello Ticket Home!!!" />
 
       <div className="flex flex-1 flex-col items-center">
