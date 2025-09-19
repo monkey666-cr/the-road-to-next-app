@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import { homePath, loginPath, ticketsPath } from "@/path";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { LucideKanban } from "lucide-react";
 import { Header } from "@/components/header";
 
 const geistSans = Geist({
@@ -36,7 +32,7 @@ export default function RootLayout({
 
         <main
           className="
-          main-h-screen flex-1
+          min-h-screen flex-1
           overflow-y-auto overflow-x-auto
           py-20 px-8
           bg-secondaary/20
