@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { LucideKanban } from "lucide-react";
 import { homePath, loginPath, ticketsPath } from "@/path";
+import { ThemeSwitcher } from "./theme/theme-switcher";
 
 const Header = () => {
   return (
@@ -31,6 +32,9 @@ const Header = () => {
         </div>
       </div>
       <div className="flex gap-2">
+        <div>
+          <ThemeSwitcher />
+        </div>
         <div>
           <Link
             href={loginPath}

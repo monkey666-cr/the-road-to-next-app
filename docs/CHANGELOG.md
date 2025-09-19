@@ -25,7 +25,6 @@
 - feat: Extract
 - feat: Modify
 - feat: Reuse
-- feat: Recap
 - feat: Implementation
 
 ## v0.0.4
