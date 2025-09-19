@@ -14,3 +14,4 @@
 - feat: add clsx, conditional style
 - feat: add fade in from top animate
 - feat: setup ui.shadcn.com
+- feat: add card component, add login page.

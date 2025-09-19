@@ -1,7 +1,7 @@
 const initializeData = [
   {
     id: "1",
-    title: "First Ticket",
+    title: "First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, ",
     description:
       "This is the first ticket. This is the first ticket.This is the first ticket. This is the first ticket.",
     status: "OPEN" as const,
