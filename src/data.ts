@@ -1,7 +1,10 @@
-const initializeData = [
+import { Ticket } from "./features/tickets/types";
+
+const initializeData: Ticket[] = [
   {
     id: "1",
-    title: "First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, ",
+    title:
+      "First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, First Ticket, ",
     description:
       "This is the first ticket. This is the first ticket.This is the first ticket. This is the first ticket.",
     status: "OPEN" as const,
@@ -20,4 +23,4 @@ const initializeData = [
   },
 ];
 
-export default initializeData;
+export { initializeData };

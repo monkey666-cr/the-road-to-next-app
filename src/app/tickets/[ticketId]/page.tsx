@@ -1,7 +1,7 @@
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
-import initializeData from "@/data";
+import { initializeData } from "@/data";
 import TicketItem from "@/features/tickets/components/ticket-item";
 import { ticketsPath } from "@/path";
 import Link from "next/link";
