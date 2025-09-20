@@ -30,7 +30,6 @@
 ## v0.0.4
 
 - feat: Data Fetching in Client Components
-- feat: Characteristics of Client Components
 - feat: Client-Server Boundary
 - feat: Client-Server Composition
 - feat: Data Fetching in Server Components

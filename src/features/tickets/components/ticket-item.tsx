@@ -7,6 +7,8 @@ import { TicketItemProps } from "../types";
 import { LucideSquareArrowOutUpRight, LucideTrash2 } from "lucide-react";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
+  console.log("Render Ticket Item:", ticket.id);
+
   return (
     <div
       className={clsx("flex flex-row justify-between items-start w-full mb-4", {
@@ -31,7 +33,8 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
         </CardHeader>
         <CardContent
           className={clsx("text-sm w-full", {
-            "line-through text-gray-400": ticket.status === "CLOSED" && !isDetial,
+            "line-through text-gray-400":
+              ticket.status === "CLOSED" && !isDetial,
             "line-clamp-1": !isDetial,
             "max-w-[350]": !isDetial,
           })}
