@@ -7,8 +7,8 @@ import clsx from "clsx";
 import Link from "next/link";
 import { TicketItemProps } from "../types";
 import { LucideSquareArrowOutUpRight, LucideTrash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { deleteTicket } from "../actions/delete-ticket";
+import { Button } from "@/components/ui/button";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
   if (!ticket) {
@@ -57,14 +57,20 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
           <Link
             href={ticketsPath}
             className="text-sm my-1.5"
-            onClick={async () => {
+            onClick={async (e) => {
+              e.preventDefault(); // 阻止 Link 的默认导航
+
               await deleteTicket(ticket.id);
             }}
           >
             <LucideTrash2 className="size-3.5" />
           </Link>
         ) : (
-          <Link href={ticketPath(ticket.id)} className="text-sm my-1.5">
+          <Link
+            prefetch
+            href={ticketPath(ticket.id)}
+            className="text-sm my-1.5"
+          >
             <LucideSquareArrowOutUpRight className="size-3.5" />
           </Link>
         )}
