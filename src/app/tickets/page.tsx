@@ -1,8 +1,6 @@
 import { Heading } from "@/components/heading";
 import { Spinner } from "@/components/spinner";
-import TicketItem from "@/features/tickets/components/ticket-item";
 import { TicketList } from "@/features/tickets/components/ticket-list";
-import { getTickets } from "@/features/tickets/queries/get-tickets";
 import { Suspense } from "react";
 
 // this is a client component

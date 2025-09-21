@@ -40,7 +40,6 @@
 
 ## v0.0.5
 
-- feat: Introduction
 - feat: Error Route
 - feat: Error Boundary
 - feat: Not Found Route
