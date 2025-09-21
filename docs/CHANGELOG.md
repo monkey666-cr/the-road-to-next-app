@@ -36,10 +36,10 @@
 - feat: SSR vs Server Components
 - feat: Server-Side Rendering
 - feat: Streaming
+- feat: Suspense
 
 ## v0.0.5
 
-- feat: Suspense
 - feat: Introduction
 - feat: Error Route
 - feat: Error Boundary
