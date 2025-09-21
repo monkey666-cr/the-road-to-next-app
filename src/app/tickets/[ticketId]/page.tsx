@@ -1,4 +1,5 @@
 import { Heading } from "@/components/heading";
+import { Spinner } from "@/components/spinner";
 import { TicketDetail } from "@/features/tickets/components/ticket-detail";
 import { Suspense } from "react";
 
@@ -16,7 +17,7 @@ const TicketPage = async (props: TicketPageProps) => {
     <>
       <Heading title="Ticket Details" />
 
-      <Suspense>
+      <Suspense fallback={<Spinner />}>
         <TicketDetail ticketId={ticketId} />
       </Suspense>
     </>

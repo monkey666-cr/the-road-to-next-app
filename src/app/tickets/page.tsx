@@ -1,4 +1,5 @@
 import { Heading } from "@/components/heading";
+import { Spinner } from "@/components/spinner";
 import TicketItem from "@/features/tickets/components/ticket-item";
 import { TicketList } from "@/features/tickets/components/ticket-list";
 import { getTickets } from "@/features/tickets/queries/get-tickets";
@@ -36,7 +37,7 @@ const Tickets = async () => {
     <div className="flex flex-1 flex-col">
       <Heading title="Tickets Page" />
 
-      <Suspense>
+      <Suspense fallback={<Spinner />}>
         <TicketList />
       </Suspense>
     </div>
