@@ -1,7 +1,4 @@
-import { Heading } from "@/components/heading";
-import { Spinner } from "@/components/spinner";
 import { TicketDetail } from "@/features/tickets/components/ticket-detail";
-import { Suspense } from "react";
 
 type TicketPageProps = {
   params: Promise<{
@@ -15,7 +12,7 @@ const TicketPage = async (props: TicketPageProps) => {
 
   return (
     <>
-      <TicketDetail ticketId={ticketId} />
+      <TicketDetail ticketId={Number(ticketId)} />
     </>
   );
 };

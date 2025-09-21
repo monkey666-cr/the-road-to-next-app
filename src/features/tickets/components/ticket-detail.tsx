@@ -1,13 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Placeholder } from "@/components/ui/placeholder";
-import { ticketsPath } from "@/path";
-import Link from "next/link";
 import TicketItem from "./ticket-item";
 import { getTicket } from "../queries/get-ticket";
 import { notFound } from "next/navigation";
 
 type TicketDetailProps = {
-  ticketId: string;
+  ticketId: number;
 };
 
 export const TicketDetail = async ({ ticketId }: TicketDetailProps) => {

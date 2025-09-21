@@ -1,11 +1,6 @@
-export type TicketStatusType = "OPEN" | "IN_PROGRESS" | "CLOSED";
+import { Ticket } from "@prisma/client";
 
-export type Ticket = {
-  id: string;
-  title: string;
-  status: TicketStatusType;
-  description: string;
-};
+export type TicketStatusType = "OPEN" | "IN_PROGRESS" | "CLOSED";
 
 export type TicketItemProps = {
   ticket: Ticket;
