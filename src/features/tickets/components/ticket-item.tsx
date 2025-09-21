@@ -1,12 +1,20 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TicketStatus } from "@/features/tickets/constants";
-import { ticketPath } from "@/path";
+import { ticketPath, ticketsPath } from "@/path";
 import clsx from "clsx";
 import Link from "next/link";
 import { TicketItemProps } from "../types";
 import { LucideSquareArrowOutUpRight, LucideTrash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { deleteTicket } from "../actions/delete-ticket";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
+  if (!ticket) {
+    return null;
+  }
+
   console.log("Render Ticket Item:", ticket.id);
 
   return (
@@ -44,16 +52,23 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
       </Card>
 
       {/* right side bar button */}
-      {isDetial ? null : (
-        <div className="flex flex-col justify-between items-center max-h-[50px] mt-2">
+      <div className="flex flex-col justify-between items-center max-h-[50px] mt-2">
+        {isDetial ? (
+          <Link
+            href={ticketsPath}
+            className="text-sm my-1.5"
+            onClick={async () => {
+              await deleteTicket(ticket.id);
+            }}
+          >
+            <LucideTrash2 className="size-3.5" />
+          </Link>
+        ) : (
           <Link href={ticketPath(ticket.id)} className="text-sm my-1.5">
             <LucideSquareArrowOutUpRight className="size-3.5" />
           </Link>
-          <Link href={ticketPath(ticket.id)} className="text-sm my-1.5">
-            <LucideTrash2 className="size-3.5" />
-          </Link>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
