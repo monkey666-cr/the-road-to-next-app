@@ -1,6 +1,11 @@
 import { Heading } from "@/components/heading";
 import { Spinner } from "@/components/spinner";
+import { Button } from "@/components/ui/button";
+import { Placeholder } from "@/components/ui/placeholder";
 import { TicketList } from "@/features/tickets/components/ticket-list";
+import { homePath } from "@/path";
+import { ErrorBoundary } from "react-error-boundary";
+import Link from "next/link";
 import { Suspense } from "react";
 
 // this is a client component
@@ -35,9 +40,22 @@ const Tickets = async () => {
     <div className="flex flex-1 flex-col">
       <Heading title="Tickets Page" />
 
-      <Suspense fallback={<Spinner />}>
-        <TicketList />
-      </Suspense>
+      <ErrorBoundary
+        fallback={
+          <Placeholder
+            label="Something went wrong!"
+            button={
+              <Button asChild variant="outline">
+                <Link href={homePath}>Go to Home</Link>
+              </Button>
+            }
+          />
+        }
+      >
+        <Suspense fallback={<Spinner />}>
+          <TicketList />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
