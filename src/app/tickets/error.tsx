@@ -8,7 +8,7 @@ import Link from "next/link";
 const Error = ({ error }: { error: Error }) => {
   return (
     <Placeholder
-      label={error.message}
+      label={error.message || "Something went wrong!"}
       button={
         <Button asChild variant="outline">
           <Link href={homePath}>Go to Home</Link>

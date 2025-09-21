@@ -15,11 +15,7 @@ const TicketPage = async (props: TicketPageProps) => {
 
   return (
     <>
-      <Heading title="Ticket Details" />
-
-      <Suspense fallback={<Spinner />}>
-        <TicketDetail ticketId={ticketId} />
-      </Suspense>
+      <TicketDetail ticketId={ticketId} />
     </>
   );
 };
