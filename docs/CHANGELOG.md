@@ -70,7 +70,7 @@
 - feat: On-Demand Caching
 - feat: Where do we cache
 - feat: Request Memoizaation
-- feat: Generate Static Paarams
+- feat: Generate Static Params
 - feat: Recap
 
 ## v0.1.2
