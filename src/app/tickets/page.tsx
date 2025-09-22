@@ -7,6 +7,7 @@ import { homePath } from "@/path";
 import { ErrorBoundary } from "react-error-boundary";
 import Link from "next/link";
 import { Suspense } from "react";
+import TicketCreate from "@/features/tickets/components/ticket-create";
 
 // this is a client component
 // export default function Tickets() {
@@ -37,26 +38,30 @@ import { Suspense } from "react";
 
 const Tickets = async () => {
   return (
-    <div className="flex flex-1 flex-col">
+    <>
       <Heading title="Tickets Page" />
 
-      <ErrorBoundary
-        fallback={
-          <Placeholder
-            label="Something went wrong!"
-            button={
-              <Button asChild variant="outline">
-                <Link href={homePath}>Go to Home</Link>
-              </Button>
-            }
-          />
-        }
-      >
-        <Suspense fallback={<Spinner />}>
-          <TicketList />
-        </Suspense>
-      </ErrorBoundary>
-    </div>
+      <div className="flex flex-1 flex-col animate-fade-in-from-top">
+        <TicketCreate />
+
+        <ErrorBoundary
+          fallback={
+            <Placeholder
+              label="Something went wrong!"
+              button={
+                <Button asChild variant="outline">
+                  <Link href={homePath}>Go to Home</Link>
+                </Button>
+              }
+            />
+          }
+        >
+          <Suspense fallback={<Spinner />}>
+            <TicketList />
+          </Suspense>
+        </ErrorBoundary>
+      </div>
+    </>
   );
 };
 

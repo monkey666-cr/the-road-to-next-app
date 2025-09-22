@@ -8,7 +8,7 @@ export const TicketList = async () => {
   // throw new Error("Failed to fetch tickets");
 
   return (
-    <div className="flex flex-1 flex-col items-center animate-fade-in-from-top">
+    <div className="flex flex-1 flex-col items-center">
       {tickets.map((ticket) => (
         <TicketItem key={ticket.id} ticket={ticket} />
       ))}
