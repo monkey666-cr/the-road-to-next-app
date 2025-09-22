@@ -2,13 +2,16 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TicketStatus } from "@/features/tickets/constants";
-import { ticketPath, ticketsPath } from "@/path";
+import { ticketEditPath, ticketPath, ticketsPath } from "@/path";
 import clsx from "clsx";
 import Link from "next/link";
 import { TicketItemProps } from "../types";
-import { LucideSquareArrowOutUpRight, LucideTrash2 } from "lucide-react";
+import {
+  LucidePencil,
+  LucideSquareArrowOutUpRight,
+  LucideTrash2,
+} from "lucide-react";
 import { deleteTicket } from "../actions/delete-ticket";
-import { Button } from "@/components/ui/button";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
   if (!ticket) {
@@ -66,13 +69,22 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
             <LucideTrash2 className="size-3.5" />
           </Link>
         ) : (
-          <Link
-            prefetch
-            href={ticketPath(ticket.id)}
-            className="text-sm my-1.5"
-          >
-            <LucideSquareArrowOutUpRight className="size-3.5" />
-          </Link>
+          <>
+            <Link
+              prefetch
+              href={ticketPath(ticket.id)}
+              className="text-sm my-1.5"
+            >
+              <LucideSquareArrowOutUpRight className="size-3.5" />
+            </Link>
+            <Link
+              prefetch
+              href={ticketEditPath(ticket.id)}
+              className="text-sm my-1.5"
+            >
+              <LucidePencil className="size-3.5" />
+            </Link>
+          </>
         )}
       </div>
     </div>

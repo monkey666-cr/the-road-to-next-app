@@ -3,20 +3,36 @@
 import { prisma } from "@/lib/prisma";
 import { ticketsPath } from "@/path";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-export const createTicket = async ({
+export const upsertTicket = async ({
+  id,
   title,
   description,
 }: {
+  id?: number;
   title: string;
   description: string;
 }) => {
-  await prisma.ticket.create({
-    data: {
-      title: title,
-      description: description,
-    },
-  });
+  if (id) {
+    await prisma.ticket.update({
+      where: { id: id },
+      data: {
+        title: title,
+        description: description,
+      },
+    });
 
-  revalidatePath(ticketsPath);
+    revalidatePath(ticketsPath);
+
+    redirect(ticketsPath);
+  } else {
+    await prisma.ticket.create({
+      data: {
+        title: title,
+        description: description,
+      },
+    });
+    revalidatePath(ticketsPath);
+  }
 };
