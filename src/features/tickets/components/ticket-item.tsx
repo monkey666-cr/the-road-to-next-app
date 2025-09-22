@@ -84,6 +84,17 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
             >
               <LucidePencil className="size-3.5" />
             </Link>
+            <Link
+              href={ticketsPath}
+              className="text-sm my-1.5"
+              onClick={async (e) => {
+                e.preventDefault(); // 阻止 Link 的默认导航
+
+                await deleteTicket(ticket.id);
+              }}
+            >
+              <LucideTrash2 className="size-3.5" />
+            </Link>
           </>
         )}
       </div>

@@ -4,39 +4,34 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { upsertTicket } from "../actions/create-ticket";
-import { sleep } from "@/lib/utils";
 import { SubmitButton } from "@/components/form/submit-button";
+import { Ticket } from "@prisma/client";
+import { useActionState } from "react";
 
-const TicketUpsertForm = ({
-  id,
-  title,
-  description,
-}: {
-  id?: number;
-  title?: string;
-  description?: string;
-}) => {
-  // const [isPending, startTransition] = useTransition();
-  const buttonDisplayName = id ? "Update" : "Create";
+type TicketUpsertFormProps = {
+  ticket?: Ticket;
+};
 
-  const upsertTicketAction = async (formData: FormData) => {
-    await sleep(3000);
-
-    const data = {
-      id: id,
-      title: formData.get("title") as string,
-      description: formData.get("description") as string,
-    };
-
-    await upsertTicket(data);
-  };
+const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
+  const [actionState, action] = useActionState(
+    upsertTicket.bind(null, ticket?.id),
+    {
+      message: "",
+    }
+  );
+  const buttonDisplayName = ticket ? "Update" : "Create";
 
   return (
     <>
-      <form action={upsertTicketAction} className="flex flex-col gap-y-5">
+      <form action={action} className="flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-2">
           <Label htmlFor="title">Title</Label>
-          <Input id="title" name="title" type="text" defaultValue={title} />
+          <Input
+            id="title"
+            name="title"
+            type="text"
+            defaultValue={ticket?.title}
+          />
         </div>
 
         <div className="flex flex-col gap-y-2">
@@ -44,11 +39,13 @@ const TicketUpsertForm = ({
           <Textarea
             id="description"
             name="description"
-            defaultValue={description}
+            defaultValue={ticket?.description}
           />
         </div>
 
         <SubmitButton label={buttonDisplayName}></SubmitButton>
+
+        {actionState.message}
       </form>
     </>
   );

@@ -15,13 +15,7 @@ const TicketUpdate = async (ticketId: number) => {
         title="Edit Ticket"
         description="Edit an existing ticket"
         className="flex flex-col self-center w-full max-w-[650px]"
-        content={
-          <TicketUpsertForm
-            id={ticket.id}
-            title={ticket.title}
-            description={ticket.description}
-          />
-        }
+        content={<TicketUpsertForm ticket={ticket} />}
       />
     </div>
   );
