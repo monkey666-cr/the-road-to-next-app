@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import {
   ActionState,
   fromErrorToActionState,
+  toActionState,
 } from "@/components/form/utils/to-action-state";
 
 const upsertTicketSchema = z.object({
@@ -41,5 +42,5 @@ export const upsertTicket = async (
     redirect(ticketsPath);
   }
 
-  return { message: "Ticket created" };
+  return toActionState("SUCCESS", "Ticket created");
 };

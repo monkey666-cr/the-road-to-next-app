@@ -8,6 +8,7 @@ import { SubmitButton } from "@/components/form/submit-button";
 import { Ticket } from "@prisma/client";
 import { useActionState } from "react";
 import { FieldError } from "@/components/form/utils/field-error";
+import { EMPTY_ACTION_STATE } from "@/components/form/utils/to-action-state";
 
 type TicketUpsertFormProps = {
   ticket?: Ticket;
@@ -16,9 +17,7 @@ type TicketUpsertFormProps = {
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(
     upsertTicket.bind(null, ticket?.id),
-    {
-      message: "",
-    }
+    EMPTY_ACTION_STATE
   );
   const buttonDisplayName = ticket ? "Update" : "Create";
 
