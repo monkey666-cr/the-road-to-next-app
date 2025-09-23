@@ -103,6 +103,109 @@
 - feat: Schema Changes
 - feat: Working with Currencies
 - feat: Working with Dates
-- feat: Close DatePicker
-- feat: Reset DatePicker
+- feat: Close DatePicker (Controlled Component)
+- feat: Reset DatePicker (key)
 - feat: Exposing Callback Handlers
+- feat: Reset DatePicker (useImperativeHandle)
+- faet: Dropdown Component
+- feat: Ticket Status
+- feat: Update Toast Feedback
+- feat: Confirm Dialog
+- feat: Configm Dialog from Dropdown
+- feat: Delete Toast Feedback
+- feat: Development vs Production
+
+## v0.1.4
+
+- feat: Vercel
+- feat: Environment Variables
+- feat: Other Environment Variables
+- feat: Lucia
+- feat: Paths for Authenciation
+- feat: Sign Up
+- feat: Sign In
+- feat: Regression Bugs
+- feat: Authentication Status
+- feat: Sign Out
+- feat: Header (Server Component)
+- feat: Header (Client Component)
+- feat: The Authentication Flicker
+
+## v0.1.5
+
+- feat: One-to-Many Relation
+- feat: Referential Actions
+- feat: No-Nullable Relation
+- feat: Relation Queries
+- feat: Exclude Sensitive Information
+- feat: Protected Routes
+- feat: Ownership
+- feat: Protected API
+- feat: Protected UI
+- feat: All Tickets vs My Tickets
+
+## v0.1.6
+
+- feat: Sidebar
+- feat: Authenticated Sidebar
+- feat: Breadcrumbs
+- feat: Tabs
+- feat: Active Path (Fastest Levenshein)
+- feat: Account Dropdown
+- feat: Route Groups
+- feat: Private Folders
+- feat: useSearchParams
+- feat: searchParams
+- feat: Debounce Requests
+- feat: sort
+- feat: Typed Search Params
+- feat: useQueryState
+- feat: Composite Key
+- feat: Mediator Components
+- feat: URL State
+
+## v0.1.7
+
+- feat: Offest-Based Pagination
+- feat: Metadata in Pagination with Prop Drilling
+- feat: Database Transactions
+- feat: Interplay between Interactions
+- feat: Dynamic Page Size
+- feat: Route Handler
+- feat: Route Params in Route Handler
+- feat: Search Params in Route Handler
+
+## v0.1.8
+
+- feat: Intro (with Challenge)
+- feat: Many-to-One Relation
+- feat: Read Comments
+- feat: Create Comments
+- feat: Delete Comments
+- feat: Sequential Data Fetching
+- feat: Parallel Data Fetching
+- feat: Explicit Client Components
+- feat: Hydration Mismatch
+- feat: Async Client Components
+- feat: Client-Server Boundary
+- feat: use client
+- feat: use server
+- feat: Continuous Offset-Based Pagination
+
+## v0.1.9
+
+- feat: Initial State
+- feat: Sliding Window
+- feat: Client-Side  State Remove Comment
+- feat: Client-Side State Add Comment
+- feat: TypeScript Generics(Bonus)
+- feat: Delete Feedback
+- feat: Cursor-Based Pagination
+- feat: Deliberate Over-Fetching
+- feat: React Query Provider
+- feat: useInfiniteQuery
+- feat: initialData
+- feat: Refetch
+- feat: Invlidate Query
+- feat: Infinite Scroll
+- feat: Custom Domain
