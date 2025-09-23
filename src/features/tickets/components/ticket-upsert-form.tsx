@@ -9,6 +9,7 @@ import { Ticket } from "@prisma/client";
 import { useActionState } from "react";
 import { FieldError } from "@/components/form/utils/field-error";
 import { EMPTY_ACTION_STATE } from "@/components/form/utils/to-action-state";
+import { useActionFeedback } from "@/components/form/hooks/use-action-feedback";
 
 type TicketUpsertFormProps = {
   ticket?: Ticket;
@@ -20,6 +21,15 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
     EMPTY_ACTION_STATE
   );
   const buttonDisplayName = ticket ? "Update" : "Create";
+
+  useActionFeedback(actionState, {
+    onSuccess: ({ actionState }) => {
+      console.log(actionState.message);
+    },
+    onError: ({ actionState }) => {
+      console.log(actionState.message);
+    },
+  });
 
   return (
     <>
