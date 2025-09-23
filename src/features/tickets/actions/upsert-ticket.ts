@@ -12,7 +12,7 @@ import {
 
 const upsertTicketSchema = z.object({
   title: z.string().min(1).max(255),
-  description: z.string(),
+  description: z.string().min(1).max(1024),
 });
 
 export const upsertTicket = async (
