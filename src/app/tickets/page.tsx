@@ -8,6 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Link from "next/link";
 import { Suspense } from "react";
 import TicketCreate from "@/features/tickets/components/ticket-create";
+import { RedirectToast } from "@/components/redirect-toast";
 
 // this is a client component
 // export default function Tickets() {
@@ -60,6 +61,8 @@ const Tickets = async () => {
             <TicketList />
           </Suspense>
         </ErrorBoundary>
+
+        <RedirectToast />
       </div>
     </>
   );

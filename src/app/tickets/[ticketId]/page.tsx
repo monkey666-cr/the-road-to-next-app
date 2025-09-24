@@ -1,3 +1,4 @@
+import { RedirectToast } from "@/components/redirect-toast";
 import { TicketDetail } from "@/features/tickets/components/ticket-detail";
 
 type TicketPageProps = {
@@ -13,6 +14,8 @@ const TicketPage = async (props: TicketPageProps) => {
   return (
     <>
       <TicketDetail ticketId={Number(ticketId)} />
+
+      <RedirectToast />
     </>
   );
 };
