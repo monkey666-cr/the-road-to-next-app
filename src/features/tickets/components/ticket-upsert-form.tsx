@@ -10,6 +10,7 @@ import { useActionState } from "react";
 import { FieldError } from "@/components/form/utils/field-error";
 import { EMPTY_ACTION_STATE } from "@/components/form/utils/to-action-state";
 import { Form } from "@/components/form/form";
+import { DatePicker } from "@/components/data-picker";
 
 type TicketUpsertFormProps = {
   ticket?: Ticket;
@@ -54,7 +55,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
         <div className="flex flex-row gap-x-2 mb-1">
           <div className="flex flex-col w-1/2 gap-y-2">
             <Label htmlFor="deadline">Deadline</Label>
-            <Input
+            {/* <Input
               id="deadline"
               name="deadline"
               type="date"
@@ -63,6 +64,14 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
                 ticket?.deadline
               }
               className="w-full max-w-[150px]"
+            /> */}
+            <DatePicker
+              id="daedline"
+              name="deadline"
+              defaultValue={
+                (actionState.payload?.get("deadline") as string) ??
+                ticket?.deadline
+              }
             />
             <FieldError actionState={actionState} name="deadline" />
           </div>
@@ -75,7 +84,8 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
               type="number"
               step=".01"
               defaultValue={
-                (actionState.payload?.get("bounty") as string) ?? ticket?.bounty
+                (actionState.payload?.get("bounty") as string) ??
+                (ticket?.bounty as number) / 100
               }
             />
             <FieldError actionState={actionState} name="bounty" />
