@@ -5,6 +5,7 @@ import { TicketStatus } from "@/features/tickets/constants";
 import { ticketEditPath, ticketPath, ticketsPath } from "@/path";
 import clsx from "clsx";
 import Link from "next/link";
+import { MouseEvent } from "react";
 import { TicketItemProps } from "../types";
 import {
   LucidePencil,
@@ -12,13 +13,27 @@ import {
   LucideTrash2,
 } from "lucide-react";
 import { deleteTicket } from "../actions/delete-ticket";
+import { usePathname } from "next/navigation";
+import { toast } from "sonner";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
+  const pathname = usePathname();
+
   if (!ticket) {
     return null;
   }
+  const deleteTicketHandle = async (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault(); // 阻止 Link 的默认导航
 
-  console.log("Render Ticket Item:", ticket.id);
+    const res = await deleteTicket(ticket.id, pathname);
+    if (res.message) {
+      if (res.status === "SUCCESS") {
+        toast.success(res.message);
+      } else {
+        toast.error(res.message);
+      }
+    }
+  };
 
   return (
     <div
@@ -60,11 +75,7 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
           <Link
             href={ticketsPath}
             className="text-sm my-1.5"
-            onClick={async (e) => {
-              e.preventDefault(); // 阻止 Link 的默认导航
-
-              await deleteTicket(ticket.id);
-            }}
+            onClick={deleteTicketHandle}
           >
             <LucideTrash2 className="size-3.5" />
           </Link>
@@ -87,11 +98,7 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
             <Link
               href={ticketsPath}
               className="text-sm my-1.5"
-              onClick={async (e) => {
-                e.preventDefault(); // 阻止 Link 的默认导航
-
-                await deleteTicket(ticket.id);
-              }}
+              onClick={deleteTicketHandle}
             >
               <LucideTrash2 className="size-3.5" />
             </Link>
