@@ -9,20 +9,34 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
+import { useImperativeHandle, useState } from "react";
 import { format } from "date-fns";
+
+export type ImperativeHandlerFromDatePicker = {
+  reset: () => void;
+};
 
 type DatePickerProps = {
   id: string;
   name: string;
   defaultValue?: string | null;
+  imperativeHandleRef?: React.RefObject<ImperativeHandlerFromDatePicker>;
 };
 
-const DatePicker = ({ id, name, defaultValue }: DatePickerProps) => {
+const DatePicker = ({
+  id,
+  name,
+  defaultValue,
+  imperativeHandleRef,
+}: DatePickerProps) => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState<Date | undefined>(
     defaultValue ? new Date(defaultValue) : new Date()
   );
+
+  useImperativeHandle(imperativeHandleRef, () => ({
+    reset: () => setDate(new Date()),
+  }));
 
   const formatedStringDate = date ? format(date, "yyyy-MM-dd") : "";
 
