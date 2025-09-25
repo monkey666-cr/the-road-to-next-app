@@ -66,6 +66,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
               className="w-full max-w-[150px]"
             /> */}
             <DatePicker
+              key={actionState.timestamp}
               id="daedline"
               name="deadline"
               defaultValue={
