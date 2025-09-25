@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { TicketStatus } from "@/features/tickets/constants";
 import { ticketEditPath, ticketPath, ticketsPath } from "@/path";
 import clsx from "clsx";
@@ -15,6 +21,7 @@ import {
 import { deleteTicket } from "../actions/delete-ticket";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
+import { toCurrencyFromCent } from "@/utils/currency";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
   const pathname = usePathname();
@@ -67,6 +74,13 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
         >
           {ticket.description}
         </CardContent>
+
+        <CardFooter className="flex flex-row justify-between">
+          <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+          <p className="text-sm text-muted-foreground">
+            {toCurrencyFromCent(ticket.bounty || 0)}
+          </p>
+        </CardFooter>
       </Card>
 
       {/* right side bar button */}
