@@ -209,3 +209,27 @@
 - feat: Invlidate Query
 - feat: Infinite Scroll
 - feat: Custom Domain
+
+## v0.2.0
+
+- feat: Forgot Password
+- feat: Password Reset Token
+- feat: Reset Password (Public Page)
+- feat: Change Password
+- feat: Many vs One Password Reset Token
+- feat: Render Emails
+- feat: Preview Emails
+- feat: Resend
+- feat: Custom Email Domain
+- feat: Send Emial
+- feat: Resend Dashboard
+
+## v0.2.1
+
+- feat: Why a Queue
+- feat: Inngest
+- feat: Receive Events with Functions
+- feat: Send Events
+- feat: Recap
+
+

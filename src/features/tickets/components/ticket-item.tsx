@@ -14,6 +14,7 @@ import Link from "next/link";
 import { MouseEvent } from "react";
 import { TicketItemProps } from "../types";
 import {
+  LucideMoreVertical,
   LucidePencil,
   LucideSquareArrowOutUpRight,
   LucideTrash2,
@@ -22,6 +23,8 @@ import { deleteTicket } from "../actions/delete-ticket";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { toCurrencyFromCent } from "@/utils/currency";
+import { Button } from "@/components/ui/button";
+import { TicketMoreMenu } from "./ticket-more-menu";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
   const pathname = usePathname();
@@ -40,6 +43,40 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
         toast.error(res.message);
       }
     }
+  };
+
+  const detailButton = () => {
+    return (
+      <Button variant="outline" size="icon" className="my-1.5">
+        <Link prefetch href={ticketPath(ticket.id)} className="text-sm">
+          <LucideSquareArrowOutUpRight className="size-3.5" />
+        </Link>
+      </Button>
+    );
+  };
+
+  const editButton = () => {
+    return (
+      <Button variant="outline" size="icon" className="my-1.5">
+        <Link prefetch href={ticketEditPath(ticket.id)} className="text-sm">
+          <LucidePencil className="size-3.5" />
+        </Link>
+      </Button>
+    );
+  };
+
+  const deleteButton = () => {
+    return (
+      <Button variant="outline" size="icon" className="my-1.5">
+        <Link
+          href={ticketsPath}
+          className="text-sm"
+          onClick={deleteTicketHandle}
+        >
+          <LucideTrash2 className="size-3.5" />
+        </Link>
+      </Button>
+    );
   };
 
   return (
@@ -86,36 +123,23 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
       {/* right side bar button */}
       <div className="flex flex-col justify-between items-center max-h-[50px] mt-2">
         {isDetial ? (
-          <Link
-            href={ticketsPath}
-            className="text-sm my-1.5"
-            onClick={deleteTicketHandle}
-          >
-            <LucideTrash2 className="size-3.5" />
-          </Link>
+          <>
+            {editButton()}
+            {deleteButton()}
+            {
+              <TicketMoreMenu
+                ticket={ticket}
+                trigger={
+                  <Button variant="outline" size="icon" className="my-1.5">
+                    <LucideMoreVertical className="h-4 w-4" />
+                  </Button>
+                }
+              />
+            }
+          </>
         ) : (
           <>
-            <Link
-              prefetch
-              href={ticketPath(ticket.id)}
-              className="text-sm my-1.5"
-            >
-              <LucideSquareArrowOutUpRight className="size-3.5" />
-            </Link>
-            <Link
-              prefetch
-              href={ticketEditPath(ticket.id)}
-              className="text-sm my-1.5"
-            >
-              <LucidePencil className="size-3.5" />
-            </Link>
-            <Link
-              href={ticketsPath}
-              className="text-sm my-1.5"
-              onClick={deleteTicketHandle}
-            >
-              <LucideTrash2 className="size-3.5" />
-            </Link>
+            {detailButton()} {editButton()} {deleteButton()}
           </>
         )}
       </div>
