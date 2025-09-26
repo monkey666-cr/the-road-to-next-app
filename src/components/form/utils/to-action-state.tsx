@@ -39,7 +39,7 @@ function formatZodErrorToFieldErrors(
 
 export const fromErrorToActionState = (
   error: unknown,
-  formData: FormData
+  formData?: FormData
 ): ActionState => {
   if (error instanceof ZodError) {
     return {
