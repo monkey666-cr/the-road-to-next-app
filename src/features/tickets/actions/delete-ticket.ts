@@ -1,6 +1,10 @@
 "use server";
 
 import { setCookieByKey } from "@/actions/cookies";
+import {
+  ActionState,
+  toActionState,
+} from "@/components/form/utils/to-action-state";
 import { prisma } from "@/lib/prisma";
 import { ticketsPath } from "@/path";
 import { revalidatePath } from "next/cache";
@@ -9,7 +13,7 @@ import { redirect } from "next/navigation";
 export const deleteTicket = async (
   ticketId: number,
   pathname: string
-): Promise<{ status: string; message: string }> => {
+): Promise<ActionState> => {
   await prisma.ticket.delete({
     where: { id: ticketId },
   });
@@ -24,5 +28,5 @@ export const deleteTicket = async (
     toastMessage = "Ticket deleted";
   }
 
-  return { status: "SUCCESS", message: toastMessage };
+  return toActionState("SUCCESS", toastMessage);
 };

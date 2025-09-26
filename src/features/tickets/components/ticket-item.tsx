@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import { toCurrencyFromCent } from "@/utils/currency";
 import { Button } from "@/components/ui/button";
 import { TicketMoreMenu } from "./ticket-more-menu";
+import { ConfirmDialog } from "@/components/confirm-dialog";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
   const pathname = usePathname();
@@ -79,6 +80,27 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
     );
   };
 
+  const deleteButton2 = () => {
+    return (
+      <ConfirmDialog
+        action={deleteTicket.bind(null, ticket.id, pathname)}
+        trigger={
+          <Button variant="outline" size="icon" className="my-1.5">
+            <Link
+              href={ticketsPath}
+              className="text-sm"
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <LucideTrash2 className="size-3.5" />
+            </Link>
+          </Button>
+        }
+      />
+    );
+  };
+
   return (
     <div
       className={clsx("flex flex-row justify-between items-start w-full mb-4", {
@@ -125,7 +147,7 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
         {isDetial ? (
           <>
             {editButton()}
-            {deleteButton()}
+            {deleteButton2()}
             {
               <TicketMoreMenu
                 ticket={ticket}
@@ -139,7 +161,7 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
           </>
         ) : (
           <>
-            {detailButton()} {editButton()} {deleteButton()}
+            {detailButton()} {editButton()} {deleteButton2()}
           </>
         )}
       </div>
