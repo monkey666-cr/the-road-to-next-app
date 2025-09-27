@@ -4,13 +4,19 @@ import { Ticket, TicketStatus } from "@prisma/client";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { TICKET_STATUS_LABELS } from "../constants";
 import { updateTicketStatus } from "../actions/update-ticket-status";
 import { toast } from "sonner";
+import { LucideTrash2 } from "lucide-react";
+import { ConfirmDialog } from "@/components/confirm-dialog";
+import { deleteTicket } from "../actions/delete-ticket";
+import { usePathname } from "next/navigation";
 
 type TicketMoreMenuProps = {
   ticket: Ticket;
@@ -18,6 +24,7 @@ type TicketMoreMenuProps = {
 };
 
 const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
+  const pathname = usePathname();
   const handleUpdateTicketStatus = async (value: string) => {
     if (ticket.status == value) {
       return;
@@ -54,6 +61,20 @@ const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
       <DropdownMenuContent side="right">
         {ticketStatusRadioGroupItems}
+        <DropdownMenuSeparator />
+
+        <ConfirmDialog
+          action={deleteTicket.bind(null, ticket.id, pathname)}
+          trigger={
+            <DropdownMenuItem
+              className="flex items-center gap-2 cursor-pointer my-1.5 px-3 py-1.5"
+              onSelect={(e) => e.preventDefault()}
+            >
+              <LucideTrash2 className="size-3.5" />
+              <span className="text-sm">Delete</span>
+            </DropdownMenuItem>
+          }
+        />
       </DropdownMenuContent>
     </DropdownMenu>
   );

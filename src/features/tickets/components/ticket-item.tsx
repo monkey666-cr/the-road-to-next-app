@@ -8,43 +8,23 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { TicketStatus } from "@/features/tickets/constants";
-import { ticketEditPath, ticketPath, ticketsPath } from "@/path";
+import { ticketEditPath, ticketPath } from "@/path";
 import clsx from "clsx";
 import Link from "next/link";
-import { MouseEvent } from "react";
 import { TicketItemProps } from "../types";
 import {
   LucideMoreVertical,
   LucidePencil,
   LucideSquareArrowOutUpRight,
-  LucideTrash2,
 } from "lucide-react";
-import { deleteTicket } from "../actions/delete-ticket";
-import { usePathname } from "next/navigation";
-import { toast } from "sonner";
 import { toCurrencyFromCent } from "@/utils/currency";
 import { Button } from "@/components/ui/button";
 import { TicketMoreMenu } from "./ticket-more-menu";
-import { ConfirmDialog } from "@/components/confirm-dialog";
 
 const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
-  const pathname = usePathname();
-
   if (!ticket) {
     return null;
   }
-  const deleteTicketHandle = async (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault(); // 阻止 Link 的默认导航
-
-    const res = await deleteTicket(ticket.id, pathname);
-    if (res.message) {
-      if (res.status === "SUCCESS") {
-        toast.success(res.message);
-      } else {
-        toast.error(res.message);
-      }
-    }
-  };
 
   const detailButton = () => {
     return (
@@ -66,35 +46,13 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
     );
   };
 
-  const deleteButton = () => {
+  const moreMenuButton = () => {
     return (
-      <Button variant="outline" size="icon" className="my-1.5">
-        <Link
-          href={ticketsPath}
-          className="text-sm"
-          onClick={deleteTicketHandle}
-        >
-          <LucideTrash2 className="size-3.5" />
-        </Link>
-      </Button>
-    );
-  };
-
-  const deleteButton2 = () => {
-    return (
-      <ConfirmDialog
-        action={deleteTicket.bind(null, ticket.id, pathname)}
+      <TicketMoreMenu
+        ticket={ticket}
         trigger={
           <Button variant="outline" size="icon" className="my-1.5">
-            <Link
-              href={ticketsPath}
-              className="text-sm"
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <LucideTrash2 className="size-3.5" />
-            </Link>
+            <LucideMoreVertical className="h-4 w-4" />
           </Button>
         }
       />
@@ -147,21 +105,13 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
         {isDetial ? (
           <>
             {editButton()}
-            {deleteButton2()}
-            {
-              <TicketMoreMenu
-                ticket={ticket}
-                trigger={
-                  <Button variant="outline" size="icon" className="my-1.5">
-                    <LucideMoreVertical className="h-4 w-4" />
-                  </Button>
-                }
-              />
-            }
+            {moreMenuButton()}
           </>
         ) : (
           <>
-            {detailButton()} {editButton()} {deleteButton2()}
+            {detailButton()}
+            {editButton()}
+            {moreMenuButton()}
           </>
         )}
       </div>
