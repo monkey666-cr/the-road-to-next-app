@@ -3,6 +3,7 @@
 import { setCookieByKey } from "@/actions/cookies";
 import {
   ActionState,
+  fromErrorToActionState,
   toActionState,
 } from "@/components/form/utils/to-action-state";
 import { prisma } from "@/lib/prisma";
@@ -14,9 +15,18 @@ export const deleteTicket = async (
   ticketId: number,
   pathname: string
 ): Promise<ActionState> => {
-  await prisma.ticket.delete({
-    where: { id: ticketId },
-  });
+  try {
+    await prisma.ticket.delete({
+      where: { id: ticketId },
+    });
+  } catch (error) {
+    const res = fromErrorToActionState(error);
+    if (pathname != ticketsPath) {
+      await setCookieByKey("toast", res.message);
+      redirect(ticketsPath);
+    }
+    return res;
+  }
 
   revalidatePath(ticketsPath);
 

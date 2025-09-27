@@ -1,4 +1,5 @@
 import { PrismaClient, Ticket, TicketStatus } from "@prisma/client";
+import { format } from "date-fns";
 
 const prisma = new PrismaClient();
 
@@ -8,6 +9,8 @@ const tickets: Ticket[] = [
     title: "Fix login bug",
     description: "Users are unable to log in with correct credentials.",
     status: TicketStatus.OPEN,
+    deadline: format(new Date(), "yyyy-MM-dd"),
+    bounty: 0,
     createdAt: new Date(),
     updatedAt: new Date(),
   },
