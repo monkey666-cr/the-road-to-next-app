@@ -63,11 +63,11 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
           <FieldError actionState={actionState} name="description" />
         </div>
 
-        <div className="flex flex-row gap-x-2 mb-1">
-          <div className="flex flex-col w-1/2 gap-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-1">
+          <div className="flex flex-col gap-y-2">
             <Label htmlFor="deadline">Deadline</Label>
             <DatePicker
-              id="daedline"
+              id="deadline"
               name="deadline"
               defaultValue={
                 (actionState.payload?.get("deadline") as string) ??
@@ -78,7 +78,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
             <FieldError actionState={actionState} name="deadline" />
           </div>
 
-          <div className="flex flex-col w-1/2 gap-y-2">
+          <div className="flex flex-col gap-y-2">
             <Label htmlFor="bounty">Bounty ($)</Label>
             <Input
               id="bounty"

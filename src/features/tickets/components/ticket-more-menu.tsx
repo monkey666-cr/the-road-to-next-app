@@ -44,6 +44,16 @@ const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
     }
   };
 
+  const handleDeleteTicket = async () => {
+    const promise = deleteTicket(ticket.id, pathname);
+    toast.promise(promise, {
+      loading: "Deleting Ticket...",
+    });
+    const result = await promise;
+
+    return result;
+  };
+
   const ticketStatusRadioGroupItems = (
     <DropdownMenuRadioGroup
       value={ticket.status}
@@ -64,7 +74,7 @@ const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
         <DropdownMenuSeparator />
 
         <ConfirmDialog
-          action={deleteTicket.bind(null, ticket.id, pathname)}
+          action={handleDeleteTicket}
           trigger={
             <DropdownMenuItem
               className="flex items-center gap-2 cursor-pointer my-1.5 px-3 py-1.5"
