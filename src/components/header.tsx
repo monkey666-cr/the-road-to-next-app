@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { LucideKanban } from "lucide-react";
-import { homePath, loginPath, ticketsPath } from "@/path";
+import { homePath, signInPath, signUpPath, ticketsPath } from "@/path";
 import { ThemeSwitcher } from "./theme/theme-switcher";
 
 const Header = () => {
@@ -37,10 +37,18 @@ const Header = () => {
         </div>
         <div>
           <Link
-            href={loginPath}
+            href={signUpPath}
             className={buttonVariants({ variant: "outline" })}
           >
-            Login
+            Sign Up
+          </Link>
+        </div>
+        <div>
+          <Link
+            href={signInPath}
+            className={buttonVariants({ variant: "outline" })}
+          >
+            Sign In
           </Link>
         </div>
       </div>
