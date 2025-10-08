@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useActionState } from "react";
 import { signUp } from "../actions/sign-up";
 import { FieldError } from "@/components/form/utils/field-error";
-import { signInPath } from "@/path";
+import { homePath } from "@/path";
 import { redirect } from "next/navigation";
 
 const SignUpForm = () => {
@@ -18,7 +18,7 @@ const SignUpForm = () => {
         action={action}
         actionState={actionState}
         onSuccess={() => {
-          redirect(signInPath);
+          redirect(homePath);
         }}
       >
         <Input
