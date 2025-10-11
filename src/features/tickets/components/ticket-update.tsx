@@ -2,10 +2,17 @@ import { notFound } from "next/navigation";
 import { getTicket } from "../queries/get-ticket";
 import TicketUpsertForm from "./ticket-upsert-form";
 import { CardCompact } from "@/components/card-comopact";
+import { getAuth } from "@/features/auth/queries/get-auth";
+import { isOwner } from "@/features/auth/utils/is-owner";
 
 const TicketUpdate = async (ticketId: number) => {
+  const { user } = await getAuth();
   const ticket = await getTicket(ticketId);
-  if (!ticket) {
+
+  const isTicketFound = !!ticket;
+  const isTicketOwner = isOwner(user, ticket);
+
+  if (!isTicketFound || !isTicketOwner) {
     notFound();
   }
 
