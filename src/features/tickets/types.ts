@@ -1,11 +1,10 @@
-import { getTicket } from "./queries/get-ticket";
-import { getTickets } from "./queries/get-tickets";
+import { Prisma } from "@prisma/client";
 
 export type TicketStatusType = "OPEN" | "IN_PROGRESS" | "CLOSED";
 
 export type TicketItemProps = {
-  ticket:
-    | Awaited<ReturnType<typeof getTickets>>[number]
-    | Awaited<ReturnType<typeof getTicket>>;
-  isDetial?: boolean;
+  ticket: Prisma.TicketGetPayload<{
+    include: { User: { select: { username: true } } };
+  }>;
+  isDetail?: boolean;
 };

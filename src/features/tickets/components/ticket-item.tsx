@@ -21,7 +21,7 @@ import { toCurrencyFromCent } from "@/utils/currency";
 import { Button } from "@/components/ui/button";
 import { TicketMoreMenu } from "./ticket-more-menu";
 
-const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
+const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
   if (!ticket) {
     return null;
   }
@@ -62,8 +62,8 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
   return (
     <div
       className={clsx("flex flex-row justify-between items-start w-full mb-4", {
-        "max-w-[420px]": !isDetial,
-        "max-w-[800px]": isDetial,
+        "max-w-[420px]": !isDetail,
+        "max-w-[800px]": isDetail,
       })}
     >
       {/* Ticket Card Info */}
@@ -72,8 +72,8 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
           <CardTitle className="flex flex-row justify-between items-center">
             <span
               className={clsx("line-clamp-1 w-full", {
-                "max-w-[250]": !isDetial,
-                "max-w-[650]": isDetial,
+                "max-w-[250]": !isDetail,
+                "max-w-[650]": isDetail,
               })}
             >
               {ticket.title}
@@ -84,16 +84,18 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
         <CardContent
           className={clsx("text-sm w-full", {
             "line-through text-gray-400":
-              ticket.status === "CLOSED" && !isDetial,
-            "line-clamp-1": !isDetial,
-            "max-w-[350]": !isDetial,
+              ticket.status === "CLOSED" && !isDetail,
+            "line-clamp-1": !isDetail,
+            "max-w-[350]": !isDetail,
           })}
         >
           {ticket.description}
         </CardContent>
 
         <CardFooter className="flex flex-row justify-between">
-          <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+          <p className="text-sm text-muted-foreground">
+            {ticket.deadline} by {ticket.User?.username}
+          </p>
           <p className="text-sm text-muted-foreground">
             {toCurrencyFromCent(ticket.bounty || 0)}
           </p>
@@ -102,7 +104,7 @@ const TicketItem = ({ ticket, isDetial }: TicketItemProps) => {
 
       {/* right side bar button */}
       <div className="flex flex-col justify-between items-center max-h-[50px] mt-2">
-        {isDetial ? (
+        {isDetail ? (
           <>
             {editButton()}
             {moreMenuButton()}

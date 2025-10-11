@@ -15,7 +15,7 @@ export const TicketDetail = async ({ ticketId }: TicketDetailProps) => {
 
   return (
     <div className="flex flex-col flex-1 items-center animate-fade-in-from-top">
-      <TicketItem ticket={ticket} isDetial />
+      <TicketItem ticket={ticket} isDetail={true} />
     </div>
   );
 };

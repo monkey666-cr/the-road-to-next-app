@@ -1,8 +1,12 @@
 import { prisma } from "@/lib/prisma";
-import { Ticket } from "@prisma/client";
 
-export const getTickets = async (): Promise<Ticket[]> => {
-  const tickets = await prisma.ticket.findMany();
+export const getTickets = async () => {
+  const tickets = await prisma.ticket.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: { User: { select: { username: true } } },
+  });
 
   return tickets;
 };
