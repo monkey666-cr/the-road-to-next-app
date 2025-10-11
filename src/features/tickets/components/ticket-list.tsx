@@ -1,8 +1,12 @@
 import { getTickets } from "../queries/get-tickets";
 import TicketItem from "./ticket-item";
 
-export const TicketList = async () => {
-  const tickets = await getTickets();
+export const TicketList = async ({
+  userId,
+}: {
+  userId?: string | null | undefined;
+}) => {
+  const tickets = await getTickets(userId);
 
   // test error boundary
   // throw new Error("Failed to fetch tickets");

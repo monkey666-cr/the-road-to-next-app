@@ -8,6 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Link from "next/link";
 import { Suspense } from "react";
 import TicketCreate from "@/features/tickets/components/ticket-create";
+import { getAuth } from "@/features/auth/queries/get-auth";
 
 // this is a client component
 // export default function Tickets() {
@@ -37,6 +38,8 @@ import TicketCreate from "@/features/tickets/components/ticket-create";
 // }
 
 const Tickets = async () => {
+  const { user } = await getAuth();
+
   return (
     <>
       <Heading title="Tickets Page" />
@@ -57,7 +60,7 @@ const Tickets = async () => {
           }
         >
           <Suspense fallback={<Spinner />}>
-            <TicketList />
+            <TicketList userId={user?.id} />
           </Suspense>
         </ErrorBoundary>
       </div>
