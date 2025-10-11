@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { signInPath, ticketsPath } from "@/path";
+import { ticketsPath } from "@/path";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import {
@@ -11,7 +11,6 @@ import {
   toActionState,
 } from "@/components/form/utils/to-action-state";
 import { setCookieByKey } from "@/actions/cookies";
-import { getAuth } from "@/features/auth/queries/get-auth";
 import { getAuthOrRedirect } from "@/features/auth/queries/get-auth-or-redirect";
 import { isOwner } from "@/features/auth/utils/is-owner";
 

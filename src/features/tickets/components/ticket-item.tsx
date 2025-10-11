@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -20,11 +18,16 @@ import {
 import { toCurrencyFromCent } from "@/utils/currency";
 import { Button } from "@/components/ui/button";
 import { TicketMoreMenu } from "./ticket-more-menu";
+import { getAuth } from "@/features/auth/queries/get-auth";
+import { isOwner } from "@/features/auth/utils/is-owner";
 
-const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
+const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
   if (!ticket) {
     return null;
   }
+
+  const { user } = await getAuth();
+  const isTicketOwner = isOwner(user, ticket);
 
   const detailButton = () => {
     return (
@@ -37,17 +40,17 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
   };
 
   const editButton = () => {
-    return (
+    return isTicketOwner ? (
       <Button variant="outline" size="icon" className="my-1.5">
         <Link prefetch href={ticketEditPath(ticket.id)} className="text-sm">
           <LucidePencil className="size-3.5" />
         </Link>
       </Button>
-    );
+    ) : null;
   };
 
   const moreMenuButton = () => {
-    return (
+    return isTicketOwner ? (
       <TicketMoreMenu
         ticket={ticket}
         trigger={
@@ -56,7 +59,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
           </Button>
         }
       />
-    );
+    ) : null;
   };
 
   return (
